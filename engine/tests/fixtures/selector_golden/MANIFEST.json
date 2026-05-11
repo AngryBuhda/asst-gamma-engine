@@ -1,0 +1,139 @@
+{
+  "fixtures": [
+    {
+      "fixture": "2026-05-11_PM",
+      "dir": "/home/user/workspace/repo_scratch/engine/engine/tests/fixtures/selector_golden/2026-05-11_PM",
+      "files_written": [
+        "run.json",
+        "recent_regimes.json",
+        "positions.json",
+        "cohort_subset.json",
+        "output.golden.json"
+      ],
+      "summary": {
+        "cohort_id": "EXPANSION|RICH_VOL|NEUTRAL",
+        "posture": "HARVEST: HOLD",
+        "regime": "neutral",
+        "iv_band": 3,
+        "risk_zone": "AMBER",
+        "has_chain": true,
+        "recent_regimes": [
+          "long_gamma_weak",
+          "long_gamma_strong",
+          "long_gamma_strong",
+          "long_gamma_weak",
+          "long_gamma_strong"
+        ],
+        "cohort_history_rows": 0
+      }
+    },
+    {
+      "fixture": "2026-05-08_PM",
+      "dir": "/home/user/workspace/repo_scratch/engine/engine/tests/fixtures/selector_golden/2026-05-08_PM",
+      "files_written": [
+        "run.json",
+        "recent_regimes.json",
+        "positions.json",
+        "cohort_subset.json",
+        "output.golden.json"
+      ],
+      "summary": {
+        "cohort_id": "RECOVERY|EXTREME_CHEAP|LONG",
+        "posture": "BUILD: LEAP ONLY",
+        "regime": "long_gamma_strong",
+        "iv_band": 0,
+        "risk_zone": "AMBER",
+        "has_chain": true,
+        "recent_regimes": [
+          "long_gamma_weak",
+          "long_gamma_weak",
+          "long_gamma_strong",
+          "long_gamma_strong",
+          "long_gamma_weak"
+        ],
+        "cohort_history_rows": 11
+      }
+    },
+    {
+      "fixture": "2026-05-07_PM",
+      "dir": "/home/user/workspace/repo_scratch/engine/engine/tests/fixtures/selector_golden/2026-05-07_PM",
+      "files_written": [
+        "run.json",
+        "recent_regimes.json",
+        "positions.json",
+        "cohort_subset.json",
+        "output.golden.json"
+      ],
+      "summary": {
+        "cohort_id": "EXPANSION|EXTREME_RICH|LONG",
+        "posture": "HARVEST: PMCC ON",
+        "regime": "long_gamma_weak",
+        "iv_band": 4,
+        "risk_zone": "AMBER",
+        "has_chain": true,
+        "recent_regimes": [
+          "long_gamma_strong",
+          "long_gamma_weak",
+          "long_gamma_weak",
+          "long_gamma_strong",
+          "long_gamma_strong"
+        ],
+        "cohort_history_rows": 1
+      }
+    },
+    {
+      "fixture": "2026-04-14_PM",
+      "dir": "/home/user/workspace/repo_scratch/engine/engine/tests/fixtures/selector_golden/2026-04-14_PM",
+      "files_written": [
+        "run.json",
+        "recent_regimes.json",
+        "positions.json",
+        "cohort_subset.json",
+        "output.golden.json"
+      ],
+      "summary": {
+        "cohort_id": "RECOVERY|CHEAP_VOL|LONG",
+        "posture": "BUILD: LEAP ONLY",
+        "regime": "long_gamma_strong",
+        "iv_band": 1,
+        "risk_zone": "RED",
+        "has_chain": false,
+        "recent_regimes": [
+          "neutral",
+          "short_gamma_weak",
+          "long_gamma_weak",
+          "long_gamma_weak",
+          "long_gamma_strong"
+        ],
+        "cohort_history_rows": 2
+      }
+    },
+    {
+      "fixture": "2026-04-09_PM",
+      "dir": "/home/user/workspace/repo_scratch/engine/engine/tests/fixtures/selector_golden/2026-04-09_PM",
+      "files_written": [
+        "run.json",
+        "recent_regimes.json",
+        "positions.json",
+        "cohort_subset.json",
+        "output.golden.json"
+      ],
+      "summary": {
+        "cohort_id": "RECOVERY|EXTREME_CHEAP|SHORT",
+        "posture": "BUILD: CSP + LEAP",
+        "regime": "short_gamma_weak",
+        "iv_band": 0,
+        "risk_zone": "RED",
+        "has_chain": false,
+        "recent_regimes": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "short_gamma_weak",
+          "neutral"
+        ],
+        "cohort_history_rows": 3
+      }
+    }
+  ]
+}

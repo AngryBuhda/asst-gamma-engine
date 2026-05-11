@@ -1,0 +1,51 @@
+{
+  "schema_version": "2.0",
+  "last_updated_utc": "2026-05-09T20:15:00Z",
+  "leap_core": {
+    "anchors": [
+      {
+        "expiry": "2028-01-21",
+        "strike": 10.0,
+        "type": "C",
+        "quantity": 1,
+        "note": "Jan 2028 $10 LEAP anchor"
+      },
+      {
+        "expiry": "2028-01-21",
+        "strike": 12.0,
+        "type": "C",
+        "quantity": 1,
+        "note": "Jan 2028 $12 LEAP anchor"
+      }
+    ]
+  },
+  "leap_mid_tail": {
+    "anchors": []
+  },
+  "pmcc_overlays": {
+    "open": []
+  },
+  "csp": {
+    "open": []
+  },
+  "shares": {
+    "asst_shares_held": 0,
+    "note": "Long-term hold; managed through drawdowns"
+  },
+  "sata": {
+    "shares_held": 0,
+    "note": "Defensive yield sleeve; rotated in on triggers"
+  },
+  "anchor_strategy": {
+    "mode": "lookback_vintage",
+    "lookback_days": [
+      30,
+      60,
+      90,
+      180
+    ],
+    "selection_rule": "prefer_largest_buffer",
+    "fallback": "static_anchors",
+    "note": "Phase 1 (annotation only): vintage anchors derived from engine's own LEAP_CORE recommendations N PM sessions ago. Cost basis = chain mid on rec date (path-independent). BCI computed in parallel with static; all verdicts persist in Selector log + quant export. Forward-only chain coverage means 30d/60d/90d/180d resolution requires that many PM sessions of chain history (started 2026-05-04)."
+  }
+}
