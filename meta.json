@@ -1,0 +1,7 @@
+{
+  "schema_version": "meta-1",
+  "build_utc": null,
+  "latest_run": null,
+  "freshness_threshold_hours": 26,
+  "note": "Initial placeholder; populated by P1.18 push-after-fetch hook on first successful session write."
+}
