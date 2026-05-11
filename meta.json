@@ -1,7 +1,11 @@
 {
   "schema_version": "meta-1",
-  "build_utc": null,
-  "latest_run": null,
-  "freshness_threshold_hours": 26,
-  "note": "Initial placeholder; populated by P1.18 push-after-fetch hook on first successful session write."
+  "build_utc": "2026-05-11T22:15:34.174705Z",
+  "latest_run": {
+    "snapshot_id": "2026-05-11_PM",
+    "runtime_utc": "2026-05-11T19:32:14.166593+00:00"
+  },
+  "daily_runs_count": 123,
+  "data_db_sha256": "9d4c8afa3b11b03b3694e46899bf1e35717b7c6826a2ee1051967f854068c58d",
+  "freshness_threshold_hours": 26
 }
