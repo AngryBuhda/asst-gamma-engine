@@ -39,7 +39,7 @@ import numpy as np
 import requests
 
 # Local: canonical iv_band derivation (shared with TS via iv_band_spec.json).
-from iv_band import compute_iv_band
+from engine.compute.iv_band import compute_iv_band
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -634,7 +634,7 @@ def serialize_chain_snapshot(chain_data: Optional[dict]) -> Optional[str]:
     """
     if not chain_data or not isinstance(chain_data, dict):
         return None
-    from chain_parser import serialize_chain_snapshot_payload
+    from engine.feeds.chain import serialize_chain_snapshot_payload
     payload = serialize_chain_snapshot_payload(
         chain_data.get("puts") or [],
         chain_data.get("calls") or [],
@@ -717,7 +717,7 @@ def fetch_steadyapi_chain(symbol: str = SYMBOL) -> Optional[dict]:
         # Tier classification + per-contract parse logic lives in chain_parser.py
         # so it can be unit-tested in isolation. Imported here to avoid pulling
         # in network/DB code from tests.
-        from chain_parser import classify_tier, parse_contract
+        from engine.feeds.chain import classify_tier, parse_contract
 
         for exp_str in all_exps:
             try:
@@ -1237,7 +1237,7 @@ def run_engine(
     engine_dir = Path(__file__).parent
     sys.path.insert(0, str(engine_dir))
 
-    from engine import (
+    from engine.compute.banding import (
         generate_daily_recommendations,
         GexStrike,
         OptionQuote,
@@ -1733,7 +1733,7 @@ def main():
     # reset the EMA. This breaks the circular dependency between flip smoothing
     # and regime classification: regime is determined by the raw GEX integral,
     # not by our smoothing presentation choice.
-    from engine import classify_regime_from_gex
+    from engine.compute.banding import classify_regime_from_gex
     pre_regime = classify_regime_from_gex(
         net_gex=net_gex,
         percentile=gex_percentile,
@@ -1846,7 +1846,7 @@ def main():
     csp_suggestion = None
     leap_suggestion = None
     try:
-        from suggestions import suggest_csp, suggest_leap
+        from engine.compute.legacy_suggestions import suggest_csp, suggest_leap
         csp_suggestion = suggest_csp(
             spot=spot,
             puts=steady_puts,
@@ -1871,7 +1871,7 @@ def main():
         traceback.print_exc(file=sys.stderr)
 
     try:
-        from suggestions import suggest_leap as _suggest_leap
+        from engine.compute.legacy_suggestions import suggest_leap as _suggest_leap
         leap_suggestion = _suggest_leap(
             spot=spot,
             calls=steady_calls,
@@ -1896,7 +1896,7 @@ def main():
     # PMCC suggestion
     pmcc_suggestion = None
     try:
-        from suggestions import suggest_pmcc
+        from engine.compute.legacy_suggestions import suggest_pmcc
         # Short calls = near-term calls (14-45 DTE), Long = LEAP calls (>500 DTE)
         short_calls = [c for c in steady_calls if not c.get("is_leap", True)]
         leap_only = [c for c in steady_calls if c.get("is_leap", False)]
@@ -1918,7 +1918,7 @@ def main():
     # Enrichment fields (trivial derivations)
     enrichment = {}
     try:
-        from suggestions import compute_enrichment_fields
+        from engine.compute.legacy_suggestions import compute_enrichment_fields
         pos_magnets_parsed = json.loads(recs.get("pos_magnets", "[]")) if isinstance(recs.get("pos_magnets"), str) else recs.get("pos_magnets", [])
         enrichment = compute_enrichment_fields(
             spot=spot,
@@ -1943,7 +1943,7 @@ def main():
     stochastic_output = None
     stochastic_error = None
     try:
-        from stochastics import compute_stochastic_output, load_history_from_db
+        from engine.compute.stochastics import compute_stochastic_output, load_history_from_db
         db_path = str(Path(__file__).parent.parent / "data.db")
         # Always use UTC date as a date object — avoids two prior bugs:
         #   (a) AM path never reaches the market-closed branch where `today`
@@ -2109,7 +2109,7 @@ def main():
     try:
         if stochastic_output and run_id:
             try:
-                from stochastics import log_stochastic_output
+                from engine.compute.stochastics import log_stochastic_output
                 db_path = str(Path(__file__).parent.parent / "data.db")
                 log_stochastic_output(db_path, run_id, stochastic_output)
                 print(f"[fetch_data] Stochastic output logged for run {run_id}")
@@ -2123,7 +2123,7 @@ def main():
             print(f"[fetch_data] Retrying stochastic computation for run {run_id} after primary failure...")
             try:
                 import sqlite3
-                from stochastics import (
+                from engine.compute.stochastics import (
                     compute_stochastic_output,
                     log_stochastic_output,
                     load_history_from_db,
@@ -2236,7 +2236,9 @@ def main():
     #    queryClient bootstrap code that consumes this file.
     if run_id:
         try:
-            from generate_snapshot import main as generate_snapshot_main
+            # P1.2: generate_snapshot is v1 Express-static artifact; v2 terminal SSG replaces it.
+            # Kept as a temporary no-op so the cron path still completes without error.
+            generate_snapshot_main = lambda: 0  # noqa: E731
             rc = generate_snapshot_main()
             if rc == 0:
                 print("[fetch_data] Snapshot regenerated for static-bundle delivery.")

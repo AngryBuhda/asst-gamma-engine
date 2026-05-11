@@ -1,0 +1,19 @@
+{
+  "version": "v1",
+  "frozen_at": "2026-05-09",
+  "_doc": "Asymmetric-tails partition of iv_percentile into 5 bands. Edges are FROZEN — never change without bumping version. Labels are derived display-only and may evolve without invalidating cohorts.",
+  "underlying": "iv_percentile",
+  "edges_lo_inclusive_hi_exclusive": [
+    {"band": 0, "lo": 0,   "hi": 10,    "label": "EXTREME_CHEAP"},
+    {"band": 1, "lo": 10,  "hi": 30,    "label": "CHEAP_VOL"},
+    {"band": 2, "lo": 30,  "hi": 70,    "label": "NORMAL_VOL"},
+    {"band": 3, "lo": 70,  "hi": 90,    "label": "RICH_VOL"},
+    {"band": 4, "lo": 90,  "hi": 100.01, "label": "EXTREME_RICH"}
+  ],
+  "_notes": [
+    "iv_percentile range is [0, 100] inclusive on both ends; band 4 hi=100.01 makes the top edge inclusive while keeping the partition exhaustive.",
+    "NULL iv_percentile -> NULL iv_band (forward-only doctrine: missing stays missing).",
+    "iv_band is the canonical cohort dimension going forward. The legacy iv_regime label is derived for backward compat: bands 0-1 -> CHEAP_VOL, band 2 -> NEUTRAL_VOL, bands 3-4 -> EXPENSIVE_VOL.",
+    "iv_rank_band is parked. When/if introduced it becomes a parallel column with its own spec file."
+  ]
+}
