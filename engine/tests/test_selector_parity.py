@@ -98,6 +98,22 @@ def _run_fixture(name: str):
     return diffs, output, golden
 
 
+import pytest  # noqa: E402
+
+
+@pytest.mark.parametrize("fixture", FIXTURES)
+def test_selector_byte_identical(fixture: str):
+    """Each golden fixture must replay byte-identically against the TS engine."""
+    diffs, _output, _golden = _run_fixture(fixture)
+    if diffs:
+        msg = f"{fixture}: {len(diffs)} differences\n" + "\n".join(
+            f"  {d}" for d in diffs[:30]
+        )
+        if len(diffs) > 30:
+            msg += f"\n  ... and {len(diffs) - 30} more"
+        pytest.fail(msg)
+
+
 def main() -> int:
     total = 0
     passed = 0
