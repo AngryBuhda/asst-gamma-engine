@@ -408,13 +408,19 @@ def write_pdf(digest: dict, df: pd.DataFrame, out_path: Path) -> None:
         prom = digest.get("promotion", {})
         crit = prom.get("criteria", {})
         det = prom.get("details", {})
+        # P1.15 fix: Python 3.11 disallows backslash escapes in f-string expressions.
+        # Extract the unicode characters into named variables outside the f-string.
+        _check = "\u2713"
+        _xmark = "\u2717"
+        _ge = "\u2265"
+        _ge8 = "\u22658"
         lines = [
-            f"  Sample sufficient (n_pass\u22658, n_failnear\u22658):  {'\u2713' if crit.get('sample_sufficient') else '\u2717'}  "
+            f"  Sample sufficient (n_pass{_ge8}, n_failnear{_ge8}):  {_check if crit.get('sample_sufficient') else _xmark}  "
             f"(pass={det.get('n_pass')}, fail+near={det.get('n_fail_or_near')})",
-            f"  fwd5 median gap \u2265 {det.get('fwd5_min_gap_required_pct')}pp:        {'\u2713' if crit.get('median_gap_ok') else '\u2717'}  "
+            f"  fwd5 median gap {_ge} {det.get('fwd5_min_gap_required_pct')}pp:        {_check if crit.get('median_gap_ok') else _xmark}  "
             f"(observed: {det.get('fwd5_median_gap_pct'):+.2f}pp)" if det.get('fwd5_median_gap_pct') is not None else
-            f"  fwd5 median gap \u2265 {det.get('fwd5_min_gap_required_pct')}pp:        \u2717  (no data)",
-            f"  CI separation (PASS lo > FAIL hi):       {'\u2713' if crit.get('ci_separation_ok') else '\u2717'}",
+            f"  fwd5 median gap {_ge} {det.get('fwd5_min_gap_required_pct')}pp:        {_xmark}  (no data)",
+            f"  CI separation (PASS lo > FAIL hi):       {_check if crit.get('ci_separation_ok') else _xmark}",
             f"",
             f"  Verdict: {verdict}",
         ]

@@ -1041,7 +1041,8 @@ def _pmcc_recommendation(
                 buf = f"{sign}${_toFixed(abs(v['bci']['buffer']), 2)}"
                 passes_label = "pass" if v["bci"]["passes"] else "fail"
                 parts.append(f"{v['lookback_days']}d {passes_label} {buf}")
-        vintage_bci_tag = f"BCI vintage: {' \u00b7 '.join(parts)}"
+        _sep = " \u00b7 "
+        vintage_bci_tag = f"BCI vintage: {_sep.join(parts)}"
 
     chain_data_hint = "from chain" if short_leg["chain_data"] == "from_chain" else "target"
     rationale_parts = [
