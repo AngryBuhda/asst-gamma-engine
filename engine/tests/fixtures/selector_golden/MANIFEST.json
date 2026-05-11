@@ -51,7 +51,7 @@
           "long_gamma_strong",
           "long_gamma_weak"
         ],
-        "cohort_history_rows": 11
+        "cohort_history_rows": 0
       }
     },
     {
@@ -78,7 +78,7 @@
           "long_gamma_strong",
           "long_gamma_strong"
         ],
-        "cohort_history_rows": 1
+        "cohort_history_rows": 0
       }
     },
     {
@@ -105,7 +105,7 @@
           "long_gamma_weak",
           "long_gamma_strong"
         ],
-        "cohort_history_rows": 2
+        "cohort_history_rows": 49
       }
     },
     {
@@ -132,7 +132,7 @@
           "short_gamma_weak",
           "neutral"
         ],
-        "cohort_history_rows": 3
+        "cohort_history_rows": 0
       }
     }
   ]

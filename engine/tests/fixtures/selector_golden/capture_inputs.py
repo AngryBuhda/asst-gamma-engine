@@ -35,7 +35,10 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 DB_PATH = "/home/user/workspace/asst-gamma-dashboard/data.db"
 POSITIONS_PATH = "/home/user/workspace/asst-gamma-dashboard/selector_state/known_positions.json"
-MASTER_RESEARCH_PATH = "/home/user/workspace/master_research_export/asst_research_master_v1.5_full.csv"
+# IMPORTANT: the live TS engine (routes.ts line 303) pins MASTER_VERSION = '1.3'.
+# Although planning docs reference v1.5, the deployed Express server reads v1.3.
+# Fixture replay must use the SAME file the goldens were produced against.
+MASTER_RESEARCH_PATH = "/home/user/workspace/master_research_export/asst_research_master_v1.3.csv"
 
 FIXTURES = [
     ("2026-05-11", "PM"),
@@ -89,9 +92,11 @@ def fetch_cohort_subset(date: str, cohort_id: str) -> dict:
         for row in reader:
             if row.get("cohort_id") != cohort_id:
                 continue
-            # Only past observations
-            if row.get("date", "") >= date:
-                continue
+            # No date filter — the TS engine reads the entire master CSV at
+            # evaluation time, regardless of fixture date. The CSV itself
+            # was generated nightly so forward-return fwd5/10/21/63 values
+            # for the most recent dates are intentionally empty (they live
+            # in the future at the time the row was written).
             matches.append(row)
     return {
         "available": True,
@@ -109,9 +114,16 @@ def capture_one(con: sqlite3.Connection, date: str, session: str) -> dict:
     recent = fetch_recent_regimes(con, date)
     positions = load_positions()
 
-    # Load the previously-captured golden output to extract cohort_id
-    golden_path = HERE / f"{date}_{session}.golden.json"
-    if not golden_path.exists():
+    # Load the previously-captured golden output to extract cohort_id.
+    # It may live either at the top-level (initial capture) or already in the
+    # fixture subdirectory (subsequent re-captures).
+    golden_path_top = HERE / f"{date}_{session}.golden.json"
+    golden_path_sub = fix_dir / "output.golden.json"
+    if golden_path_top.exists():
+        golden_path = golden_path_top
+    elif golden_path_sub.exists():
+        golden_path = golden_path_sub
+    else:
         raise RuntimeError(f"golden output not captured yet for {date} {session}")
     golden = json.loads(golden_path.read_text())
     cohort_id = golden.get("cohort_id", "?")
