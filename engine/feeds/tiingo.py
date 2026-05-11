@@ -20,10 +20,10 @@ from typing import Optional
 import numpy as np
 import requests
 
-# v2: read from env with v1 hardcoded fallback during transition.
-# Fallback removed in P1.19 after key rotation.
-_LEGACY_TIINGO_KEY = "e4e2c2f069952c774c9716909f6f4dba000707e7"  # noqa: S105
-TIINGO_API_KEY = os.environ.get("TIINGO_API_KEY", _LEGACY_TIINGO_KEY)
+# v2 (P1.19): env var only, no hardcoded fallback. Module is importable
+# without the env var set (for unit tests); functions that hit the API
+# raise at call time if TIINGO_API_KEY is missing.
+TIINGO_API_KEY = os.environ.get("TIINGO_API_KEY")
 TIINGO_HEADERS = {
     "Content-Type": "application/json",
     "Authorization": f"Token {TIINGO_API_KEY}",

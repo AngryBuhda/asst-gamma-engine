@@ -43,19 +43,19 @@ from engine.compute.iv_band import compute_iv_band
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-# ── API keys ─────────────────────────────────────────────────────────────────
-# Read from environment with v1 hardcoded fallbacks during transition.
-# After P1.19, remove the fallbacks so a missing env var fails fast.
-
-_LEGACY_FLASHALPHA_KEY = "i0Bdxt7SPzGkpiNacBecC51wODlec3zqkD7BUmcB"  # noqa: S105
-_LEGACY_STEADY_KEY = "2092|eS5j7ePdb6Z1wlkGgGTnnlIiO3IteBQOW06Dj1SV"  # noqa: S105
-_LEGACY_TIINGO_KEY = "e4e2c2f069952c774c9716909f6f4dba000707e7"  # noqa: S105
+# ── API keys (P1.19) ───────────────────────────────────────────────────
+# Read from environment, fail fast on missing values. This module never
+# embeds production secrets. Earlier drafts kept hardcoded fallbacks for
+# the v1→v2 transition; those were stripped in P1.19 to close the
+# public-repo exposure window. The original keys remain valid (until
+# the operator rotates them with each vendor) but are now stored only
+# in GitHub Actions Secrets + the legacy dashboard repo.
 
 FLASHALPHA_API_BASE = "https://lab.flashalpha.com/v1/exposure/gex/ASST"
-FLASHALPHA_API_KEY = os.environ.get("FLASHALPHA_API_KEY", _LEGACY_FLASHALPHA_KEY)
-STEADYAPI_KEY = os.environ.get("STEADYAPI_KEY", _LEGACY_STEADY_KEY)
+FLASHALPHA_API_KEY = os.environ["FLASHALPHA_API_KEY"] if "FLASHALPHA_API_KEY" in os.environ else None
+STEADYAPI_KEY = os.environ["STEADYAPI_KEY"] if "STEADYAPI_KEY" in os.environ else None
 STEADYAPI_BASE = "https://api.steadyapi.com"
-TIINGO_TOKEN = os.environ.get("TIINGO_API_KEY", _LEGACY_TIINGO_KEY)
+TIINGO_TOKEN = os.environ["TIINGO_API_KEY"] if "TIINGO_API_KEY" in os.environ else None
 DEFAULT_API_BASE = "http://localhost:5000"  # retained only for the temp selector shim; removed in P1.8
 SYMBOL = "ASST"
 GEX_HISTORY_PATH = Path(__file__).parent / "gex_history.json"
@@ -404,8 +404,7 @@ def compute_iv_metrics(spot: float, chain_data: Optional[dict] = None) -> Option
         return None
 
 
-_LEGACY_BGEO_KEY = "gLkYn1qRsa"  # noqa: S105
-BGEOMETRICS_TOKEN = os.environ.get("BGEOMETRICS_API_KEY", _LEGACY_BGEO_KEY)
+BGEOMETRICS_TOKEN = os.environ["BGEOMETRICS_API_KEY"] if "BGEOMETRICS_API_KEY" in os.environ else None
 BGEOMETRICS_API = "https://api.bitcoin-data.com"
 
 
