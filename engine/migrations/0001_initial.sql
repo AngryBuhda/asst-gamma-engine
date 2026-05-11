@@ -1,0 +1,185 @@
+-- engine/migrations/0001_initial.sql
+--
+-- v1.5 baseline schema for asst-gamma-engine. Captures the state of
+-- /home/user/workspace/asst-gamma-dashboard/data.db on 2026-05-11
+-- after all v1.0-v1.5 ALTER TABLE evolutions.
+--
+-- Forward-only and idempotent (CREATE TABLE IF NOT EXISTS).
+-- All columns consolidated into single CREATE TABLE statements for
+-- clarity \u2014 the v1 history of incremental ALTER TABLE ADD COLUMN
+-- statements is preserved in the legacy dashboard repo only.
+
+-- \u2500\u2500\u2500 daily_runs (98 columns) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+CREATE TABLE IF NOT EXISTS daily_runs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    runtime_utc TEXT NOT NULL,
+    symbol TEXT NOT NULL DEFAULT 'ASST',
+    spot REAL NOT NULL,
+    gamma_flip REAL NOT NULL,
+    atr_1d REAL,
+    net_gex REAL NOT NULL,
+    gex_percentile REAL NOT NULL,
+    regime TEXT NOT NULL,
+    csp_band_low REAL NOT NULL,
+    csp_band_high REAL NOT NULL,
+    leap_core_band_low REAL NOT NULL,
+    leap_core_band_high REAL NOT NULL,
+    pos_magnets TEXT NOT NULL DEFAULT '[]',
+    neg_magnets TEXT NOT NULL DEFAULT '[]',
+    csp_count INTEGER NOT NULL DEFAULT 0,
+    csp_top_strike REAL,
+    csp_top_expiry TEXT,
+    csp_top_dte INTEGER,
+    csp_top_mid REAL,
+    csp_top_eff_basis REAL,
+    leap_core_count INTEGER NOT NULL DEFAULT 0,
+    leap_mid_count INTEGER NOT NULL DEFAULT 0,
+    leap_tail_count INTEGER NOT NULL DEFAULT 0,
+    leap_core_strikes TEXT NOT NULL DEFAULT '[]',
+    leap_mid_strikes TEXT NOT NULL DEFAULT '[]',
+    leap_tail_strikes TEXT NOT NULL DEFAULT '[]',
+    notes TEXT NOT NULL DEFAULT '[]',
+    csp_candidates_json TEXT NOT NULL DEFAULT '[]',
+    status TEXT NOT NULL DEFAULT 'ok',
+    session TEXT DEFAULT 'PM',
+    btc_price REAL,
+    asst_volume INTEGER,
+    asst_market_cap REAL,
+    sata_price REAL,
+    sata_volume INTEGER,
+    sata_options_oi INTEGER,
+    leap_entry_percentile REAL,
+    basic_mnav REAL,
+    btc_yield_ytd REAL,
+    btc_holdings REAL,
+    btc_nav REAL,
+    nav_per_share REAL,
+    avg_cost_per_btc REAL,
+    total_shares INTEGER,
+    diluted_shares INTEGER,
+    cash_balance REAL,
+    debt_outstanding REAL,
+    iv_regime TEXT,
+    leap_entry_score REAL,
+    pmcc_status TEXT,
+    btc_weekly_rsi REAL,
+    asst_drawdown_90d REAL,
+    asst_90d_high REAL,
+    risk_zone TEXT,
+    btc_mvrv REAL,
+    btc_realized_price REAL,
+    market_closed INTEGER DEFAULT 0,
+    btc_gex_secondary_confirm REAL,
+    ev_mnav REAL,
+    current_iv REAL,
+    iv_rank REAL,
+    iv_percentile REAL,
+    iv_rank_method TEXT,
+    btc_cycle_zone TEXT,
+    csp_allowed TEXT,
+    leap_add_allowed TEXT,
+    leap_add_size TEXT,
+    pmcc_allowed TEXT,
+    action_banner TEXT,
+    btc_taker_buy_sell_ratio REAL,
+    btc_funding_rate REAL,
+    btc_liq_total_usd REAL,
+    btc_liq_long_pct REAL,
+    btc_fear_greed INTEGER,
+    net_vanna REAL,
+    vanna_percentile REAL,
+    vanna_regime TEXT,
+    csp_suggestion_json TEXT,
+    leap_suggestion_json TEXT,
+    pmcc_suggestion_json TEXT,
+    mnav_discount REAL,
+    btc_per_share_basic REAL,
+    btc_per_share_diluted REAL,
+    csp_delta_to_band REAL,
+    csp_magnet_proximity REAL,
+    iv_skew_25d REAL,
+    put_call_oi_ratio REAL,
+    stochastic_output_json TEXT,
+    raw_flip REAL,
+    btc_mvrv_zscore REAL,
+    btc_pi_cycle_signal INTEGER,
+    btc_puell_multiple REAL,
+    btc_nupl REAL,
+    btc_reserve_risk REAL,
+    option_chain_snapshot_json TEXT,
+    iv_band INTEGER
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS ix_daily_runs_date_session
+    ON daily_runs(date, session);
+
+
+-- \u2500\u2500\u2500 stochastic_log (43 columns) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+CREATE TABLE IF NOT EXISTS stochastic_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id INTEGER NOT NULL,
+    snapshot_id TEXT,
+    method_version TEXT,
+    bucket_version TEXT,
+    state_key TEXT,
+    gated_top TEXT,
+    ungated_top TEXT,
+    confidence_label TEXT,
+    evidence_count INTEGER,
+    has_conflict INTEGER,
+    output_json TEXT,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    run_hash TEXT,
+    regime_bucket TEXT,
+    gex_bucket TEXT,
+    iv_bucket TEXT,
+    cycle_bucket TEXT,
+    drawdown_bucket TEXT,
+    valuation_bucket TEXT,
+    vanna_bucket TEXT,
+    btc_deriv_bucket TEXT,
+    action_banner TEXT,
+    csp_allowed TEXT,
+    pmcc_allowed TEXT,
+    leap_add_allowed TEXT,
+    risk_zone TEXT,
+    gated_confidence TEXT,
+    gated_evidence INTEGER,
+    gated_top_score REAL,
+    gated_hhi REAL,
+    gated_rank_gap REAL,
+    gated_dispersion INTEGER,
+    ungated_confidence TEXT,
+    ungated_evidence INTEGER,
+    ungated_top_score REAL,
+    ungated_hhi REAL,
+    ungated_rank_gap REAL,
+    ungated_dispersion INTEGER,
+    conflict_score_delta REAL,
+    used_fallback INTEGER,
+    optional_missing INTEGER,
+    history_size INTEGER,
+    FOREIGN KEY (run_id) REFERENCES daily_runs(id)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS ix_stochastic_log_run_id
+    ON stochastic_log(run_id);
+
+
+-- \u2500\u2500\u2500 pipeline_runs (10 columns) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+CREATE TABLE IF NOT EXISTS pipeline_runs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    stage TEXT NOT NULL,
+    run_date TEXT NOT NULL,
+    started_at TEXT NOT NULL,
+    finished_at TEXT,
+    status TEXT NOT NULL,
+    error TEXT,
+    depends_on TEXT,
+    depends_satisfied INTEGER,
+    metadata_json TEXT
+);
+
+CREATE INDEX IF NOT EXISTS pipeline_runs_stage_date
+    ON pipeline_runs(stage, run_date);
