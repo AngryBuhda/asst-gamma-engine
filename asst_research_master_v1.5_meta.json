@@ -1,0 +1,966 @@
+{
+  "schema_version": "1.5",
+  "generated_at_utc": "2026-05-11T22:45:56.671980+00:00",
+  "source_db": "/home/user/workspace/asst-gamma-dashboard/data.db",
+  "source_db_mtime_utc": "2026-05-11T19:32:49.004068+00:00",
+  "tiers": {
+    "lite": {
+      "purpose": "Research-ready scalar table. Quant-stat-friendly.",
+      "files": [
+        "asst_research_master_v1.5.csv",
+        "asst_research_master_v1.5.parquet"
+      ],
+      "columns": 110,
+      "rows": 123,
+      "rows_pm": 67
+    },
+    "full": {
+      "purpose": "Lite + JSON blobs as escaped strings. Every DB column flat.",
+      "files": [
+        "asst_research_master_v1.5_full.csv",
+        "asst_research_master_v1.5_full.parquet"
+      ],
+      "columns": 116,
+      "rows": 123
+    },
+    "archive": {
+      "purpose": "Nested JSON-per-row. JSON columns parsed. Audit-grade.",
+      "files": [
+        "asst_runs_archive_v1.5.jsonl"
+      ],
+      "rows": 123
+    }
+  },
+  "files": {
+    "lite_csv": {
+      "filename": "asst_research_master_v1.5.csv",
+      "size_bytes": 238122,
+      "mtime_utc": "2026-05-11T22:45:56.431186+00:00"
+    },
+    "lite_parquet": {
+      "filename": "asst_research_master_v1.5.parquet",
+      "size_bytes": 127849,
+      "mtime_utc": "2026-05-11T22:45:56.467279+00:00"
+    },
+    "full_csv": {
+      "filename": "asst_research_master_v1.5_full.csv",
+      "size_bytes": 2867644,
+      "mtime_utc": "2026-05-11T22:45:56.523425+00:00"
+    },
+    "full_parquet": {
+      "filename": "asst_research_master_v1.5_full.parquet",
+      "size_bytes": 610251,
+      "mtime_utc": "2026-05-11T22:45:56.555508+00:00"
+    },
+    "archive_jsonl": {
+      "filename": "asst_runs_archive_v1.5.jsonl",
+      "size_bytes": 2805549,
+      "mtime_utc": "2026-05-11T22:45:56.651757+00:00"
+    },
+    "readme": {
+      "filename": "asst_research_master_v1.5_README.md",
+      "size_bytes": 6594,
+      "mtime_utc": "2026-05-10T03:06:10.609847+00:00"
+    },
+    "meta": {
+      "filename": "asst_research_master_v1.5_meta.json",
+      "size_bytes": 21704,
+      "mtime_utc": "2026-05-10T03:06:10.597847+00:00"
+    }
+  },
+  "row_count_total": 123,
+  "row_count_pm": 67,
+  "date_range": {
+    "min": "2026-02-04",
+    "max": "2026-05-11"
+  },
+  "session_counts": {
+    "PM": 67,
+    "AM": 28,
+    "MID": 28
+  },
+  "forward_horizons_trading_days": [
+    5,
+    10,
+    21,
+    63
+  ],
+  "forward_return_coverage_pm": {
+    "fwd5_populated": 62,
+    "fwd10_populated": 57,
+    "fwd21_populated": 46,
+    "fwd63_populated": 4
+  },
+  "cohorts": [
+    {
+      "cohort_id": "UNKNOWN|EXTREME_CHEAP|NEUTRAL",
+      "n_total_pm": 18,
+      "n_with_fwd5": 18,
+      "n_with_fwd10": 18,
+      "n_with_fwd21": 18,
+      "n_with_fwd63": 1,
+      "earliest_date": "2026-02-04",
+      "latest_date": "2026-04-02"
+    },
+    {
+      "cohort_id": "UNKNOWN|EXTREME_CHEAP|SHORT",
+      "n_total_pm": 13,
+      "n_with_fwd5": 13,
+      "n_with_fwd10": 13,
+      "n_with_fwd21": 13,
+      "n_with_fwd63": 2,
+      "earliest_date": "2026-02-05",
+      "latest_date": "2026-03-27"
+    },
+    {
+      "cohort_id": "RECOVERY|EXTREME_RICH|LONG",
+      "n_total_pm": 9,
+      "n_with_fwd5": 9,
+      "n_with_fwd10": 7,
+      "n_with_fwd21": 0,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-04-15",
+      "latest_date": "2026-04-29"
+    },
+    {
+      "cohort_id": "UNKNOWN|EXTREME_CHEAP|LONG",
+      "n_total_pm": 9,
+      "n_with_fwd5": 9,
+      "n_with_fwd10": 9,
+      "n_with_fwd21": 9,
+      "n_with_fwd63": 1,
+      "earliest_date": "2026-02-06",
+      "latest_date": "2026-03-25"
+    },
+    {
+      "cohort_id": "RECOVERY|EXTREME_CHEAP|LONG",
+      "n_total_pm": 5,
+      "n_with_fwd5": 4,
+      "n_with_fwd10": 3,
+      "n_with_fwd21": 1,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-04-11",
+      "latest_date": "2026-05-08"
+    },
+    {
+      "cohort_id": "RECOVERY|CHEAP_VOL|LONG",
+      "n_total_pm": 3,
+      "n_with_fwd5": 3,
+      "n_with_fwd10": 3,
+      "n_with_fwd21": 1,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-04-10",
+      "latest_date": "2026-04-14"
+    },
+    {
+      "cohort_id": "RECOVERY|RICH_VOL|LONG",
+      "n_total_pm": 3,
+      "n_with_fwd5": 2,
+      "n_with_fwd10": 0,
+      "n_with_fwd21": 0,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-04-30",
+      "latest_date": "2026-05-05"
+    },
+    {
+      "cohort_id": "RECOVERY|EXTREME_CHEAP|NEUTRAL",
+      "n_total_pm": 2,
+      "n_with_fwd5": 2,
+      "n_with_fwd10": 2,
+      "n_with_fwd21": 2,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-04-06",
+      "latest_date": "2026-04-08"
+    },
+    {
+      "cohort_id": "RECOVERY|EXTREME_CHEAP|SHORT",
+      "n_total_pm": 2,
+      "n_with_fwd5": 2,
+      "n_with_fwd10": 2,
+      "n_with_fwd21": 2,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-04-07",
+      "latest_date": "2026-04-09"
+    },
+    {
+      "cohort_id": "EXPANSION|EXTREME_RICH|LONG",
+      "n_total_pm": 1,
+      "n_with_fwd5": 0,
+      "n_with_fwd10": 0,
+      "n_with_fwd21": 0,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-05-07",
+      "latest_date": "2026-05-07"
+    },
+    {
+      "cohort_id": "EXPANSION|RICH_VOL|LONG",
+      "n_total_pm": 1,
+      "n_with_fwd5": 0,
+      "n_with_fwd10": 0,
+      "n_with_fwd21": 0,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-05-06",
+      "latest_date": "2026-05-06"
+    },
+    {
+      "cohort_id": "EXPANSION|RICH_VOL|NEUTRAL",
+      "n_total_pm": 1,
+      "n_with_fwd5": 0,
+      "n_with_fwd10": 0,
+      "n_with_fwd21": 0,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-05-11",
+      "latest_date": "2026-05-11"
+    }
+  ],
+  "schema": [
+    {
+      "column": "run_id",
+      "dtype": "int",
+      "source_db_column": "id",
+      "tier": "lite"
+    },
+    {
+      "column": "date",
+      "dtype": "string",
+      "source_db_column": "date",
+      "tier": "lite"
+    },
+    {
+      "column": "session",
+      "dtype": "string",
+      "source_db_column": "session",
+      "tier": "lite"
+    },
+    {
+      "column": "runtime_utc",
+      "dtype": "string",
+      "source_db_column": "runtime_utc",
+      "tier": "lite"
+    },
+    {
+      "column": "symbol",
+      "dtype": "string",
+      "source_db_column": "symbol",
+      "tier": "lite"
+    },
+    {
+      "column": "run_status",
+      "dtype": "string",
+      "source_db_column": "status",
+      "tier": "lite"
+    },
+    {
+      "column": "spot",
+      "dtype": "float",
+      "source_db_column": "spot",
+      "tier": "lite"
+    },
+    {
+      "column": "gamma_flip",
+      "dtype": "float",
+      "source_db_column": "gamma_flip",
+      "tier": "lite"
+    },
+    {
+      "column": "raw_flip",
+      "dtype": "float",
+      "source_db_column": "raw_flip",
+      "tier": "lite"
+    },
+    {
+      "column": "gamma_regime",
+      "dtype": "string",
+      "source_db_column": "regime",
+      "tier": "lite"
+    },
+    {
+      "column": "net_gex",
+      "dtype": "float",
+      "source_db_column": "net_gex",
+      "tier": "lite"
+    },
+    {
+      "column": "gex_percentile",
+      "dtype": "float",
+      "source_db_column": "gex_percentile",
+      "tier": "lite"
+    },
+    {
+      "column": "atr_1d",
+      "dtype": "float",
+      "source_db_column": "atr_1d",
+      "tier": "lite"
+    },
+    {
+      "column": "net_vanna",
+      "dtype": "float",
+      "source_db_column": "net_vanna",
+      "tier": "lite"
+    },
+    {
+      "column": "vanna_percentile",
+      "dtype": "float",
+      "source_db_column": "vanna_percentile",
+      "tier": "lite"
+    },
+    {
+      "column": "vanna_regime",
+      "dtype": "string",
+      "source_db_column": "vanna_regime",
+      "tier": "lite"
+    },
+    {
+      "column": "basic_mnav",
+      "dtype": "float",
+      "source_db_column": "basic_mnav",
+      "tier": "lite"
+    },
+    {
+      "column": "ev_mnav",
+      "dtype": "float",
+      "source_db_column": "ev_mnav",
+      "tier": "lite"
+    },
+    {
+      "column": "mnav_discount",
+      "dtype": "float",
+      "source_db_column": "mnav_discount",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_per_share_basic",
+      "dtype": "float",
+      "source_db_column": "btc_per_share_basic",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_per_share_diluted",
+      "dtype": "float",
+      "source_db_column": "btc_per_share_diluted",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_holdings",
+      "dtype": "float",
+      "source_db_column": "btc_holdings",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_yield_ytd",
+      "dtype": "float",
+      "source_db_column": "btc_yield_ytd",
+      "tier": "lite"
+    },
+    {
+      "column": "nav_per_share",
+      "dtype": "float",
+      "source_db_column": "nav_per_share",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_nav",
+      "dtype": "float",
+      "source_db_column": "btc_nav",
+      "tier": "lite"
+    },
+    {
+      "column": "avg_cost_per_btc",
+      "dtype": "float",
+      "source_db_column": "avg_cost_per_btc",
+      "tier": "lite"
+    },
+    {
+      "column": "total_shares",
+      "dtype": "int",
+      "source_db_column": "total_shares",
+      "tier": "lite"
+    },
+    {
+      "column": "diluted_shares",
+      "dtype": "int",
+      "source_db_column": "diluted_shares",
+      "tier": "lite"
+    },
+    {
+      "column": "cash_balance",
+      "dtype": "float",
+      "source_db_column": "cash_balance",
+      "tier": "lite"
+    },
+    {
+      "column": "debt_outstanding",
+      "dtype": "float",
+      "source_db_column": "debt_outstanding",
+      "tier": "lite"
+    },
+    {
+      "column": "current_iv",
+      "dtype": "float",
+      "source_db_column": "current_iv",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_rank",
+      "dtype": "float",
+      "source_db_column": "iv_rank",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_percentile",
+      "dtype": "float",
+      "source_db_column": "iv_percentile",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_rank_method",
+      "dtype": "string",
+      "source_db_column": "iv_rank_method",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_regime",
+      "dtype": "string",
+      "source_db_column": "iv_regime",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_band",
+      "dtype": "int",
+      "source_db_column": "iv_band",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_skew_25d",
+      "dtype": "float",
+      "source_db_column": "iv_skew_25d",
+      "tier": "lite"
+    },
+    {
+      "column": "put_call_oi_ratio",
+      "dtype": "float",
+      "source_db_column": "put_call_oi_ratio",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_price",
+      "dtype": "float",
+      "source_db_column": "btc_price",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_weekly_rsi",
+      "dtype": "float",
+      "source_db_column": "btc_weekly_rsi",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_mvrv",
+      "dtype": "float",
+      "source_db_column": "btc_mvrv",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_realized_price",
+      "dtype": "float",
+      "source_db_column": "btc_realized_price",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_cycle_zone",
+      "dtype": "string",
+      "source_db_column": "btc_cycle_zone",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_taker_buy_sell_ratio",
+      "dtype": "float",
+      "source_db_column": "btc_taker_buy_sell_ratio",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_funding_rate",
+      "dtype": "float",
+      "source_db_column": "btc_funding_rate",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_liq_total_usd",
+      "dtype": "float",
+      "source_db_column": "btc_liq_total_usd",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_liq_long_pct",
+      "dtype": "float",
+      "source_db_column": "btc_liq_long_pct",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_fear_greed",
+      "dtype": "int",
+      "source_db_column": "btc_fear_greed",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_gex_secondary_confirm",
+      "dtype": "float",
+      "source_db_column": "btc_gex_secondary_confirm",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_mvrv_zscore",
+      "dtype": "float",
+      "source_db_column": "btc_mvrv_zscore",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_pi_cycle_signal",
+      "dtype": "int",
+      "source_db_column": "btc_pi_cycle_signal",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_puell_multiple",
+      "dtype": "float",
+      "source_db_column": "btc_puell_multiple",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_nupl",
+      "dtype": "float",
+      "source_db_column": "btc_nupl",
+      "tier": "lite"
+    },
+    {
+      "column": "btc_reserve_risk",
+      "dtype": "float",
+      "source_db_column": "btc_reserve_risk",
+      "tier": "lite"
+    },
+    {
+      "column": "asst_drawdown_90d",
+      "dtype": "float",
+      "source_db_column": "asst_drawdown_90d",
+      "tier": "lite"
+    },
+    {
+      "column": "asst_90d_high",
+      "dtype": "float",
+      "source_db_column": "asst_90d_high",
+      "tier": "lite"
+    },
+    {
+      "column": "risk_zone",
+      "dtype": "string",
+      "source_db_column": "risk_zone",
+      "tier": "lite"
+    },
+    {
+      "column": "market_closed",
+      "dtype": "bool_int",
+      "source_db_column": "market_closed",
+      "tier": "lite"
+    },
+    {
+      "column": "action_banner",
+      "dtype": "string",
+      "source_db_column": "action_banner",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_allowed",
+      "dtype": "string",
+      "source_db_column": "csp_allowed",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_add_allowed",
+      "dtype": "string",
+      "source_db_column": "leap_add_allowed",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_add_size",
+      "dtype": "string",
+      "source_db_column": "leap_add_size",
+      "tier": "lite"
+    },
+    {
+      "column": "pmcc_allowed",
+      "dtype": "string",
+      "source_db_column": "pmcc_allowed",
+      "tier": "lite"
+    },
+    {
+      "column": "pmcc_status",
+      "dtype": "string",
+      "source_db_column": "pmcc_status",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_band_low",
+      "dtype": "float",
+      "source_db_column": "csp_band_low",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_band_high",
+      "dtype": "float",
+      "source_db_column": "csp_band_high",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_core_band_low",
+      "dtype": "float",
+      "source_db_column": "leap_core_band_low",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_core_band_high",
+      "dtype": "float",
+      "source_db_column": "leap_core_band_high",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_delta_to_band",
+      "dtype": "float",
+      "source_db_column": "csp_delta_to_band",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_magnet_proximity",
+      "dtype": "float",
+      "source_db_column": "csp_magnet_proximity",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_count",
+      "dtype": "int",
+      "source_db_column": "csp_count",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_top_strike",
+      "dtype": "float",
+      "source_db_column": "csp_top_strike",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_top_expiry",
+      "dtype": "string",
+      "source_db_column": "csp_top_expiry",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_top_dte",
+      "dtype": "int",
+      "source_db_column": "csp_top_dte",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_top_mid",
+      "dtype": "float",
+      "source_db_column": "csp_top_mid",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_top_eff_basis",
+      "dtype": "float",
+      "source_db_column": "csp_top_eff_basis",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_core_count",
+      "dtype": "int",
+      "source_db_column": "leap_core_count",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_mid_count",
+      "dtype": "int",
+      "source_db_column": "leap_mid_count",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_tail_count",
+      "dtype": "int",
+      "source_db_column": "leap_tail_count",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_core_strikes",
+      "dtype": "string",
+      "source_db_column": "leap_core_strikes",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_mid_strikes",
+      "dtype": "string",
+      "source_db_column": "leap_mid_strikes",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_tail_strikes",
+      "dtype": "string",
+      "source_db_column": "leap_tail_strikes",
+      "tier": "lite"
+    },
+    {
+      "column": "sata_price",
+      "dtype": "float",
+      "source_db_column": "sata_price",
+      "tier": "lite"
+    },
+    {
+      "column": "sata_volume",
+      "dtype": "int",
+      "source_db_column": "sata_volume",
+      "tier": "lite"
+    },
+    {
+      "column": "sata_options_oi",
+      "dtype": "int",
+      "source_db_column": "sata_options_oi",
+      "tier": "lite"
+    },
+    {
+      "column": "asst_volume",
+      "dtype": "int",
+      "source_db_column": "asst_volume",
+      "tier": "lite"
+    },
+    {
+      "column": "asst_market_cap",
+      "dtype": "float",
+      "source_db_column": "asst_market_cap",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_entry_percentile",
+      "dtype": "float",
+      "source_db_column": "leap_entry_percentile",
+      "tier": "lite"
+    },
+    {
+      "column": "leap_entry_score",
+      "dtype": "float",
+      "source_db_column": "leap_entry_score",
+      "tier": "lite"
+    },
+    {
+      "column": "pos_magnets",
+      "dtype": "string",
+      "source_db_column": "pos_magnets",
+      "tier": "lite"
+    },
+    {
+      "column": "neg_magnets",
+      "dtype": "string",
+      "source_db_column": "neg_magnets",
+      "tier": "lite"
+    },
+    {
+      "column": "notes",
+      "dtype": "string",
+      "source_db_column": "notes",
+      "tier": "lite"
+    },
+    {
+      "column": "gamma_family",
+      "dtype": "string",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "iv_band_label",
+      "dtype": "string",
+      "source_db_column": "<derived from iv_band>",
+      "tier": "lite"
+    },
+    {
+      "column": "cohort_id",
+      "dtype": "string",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "cohort_id_v",
+      "dtype": "string",
+      "source_db_column": "<constant>",
+      "tier": "lite"
+    },
+    {
+      "column": "data_health_flags",
+      "dtype": "string",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "schema_version",
+      "dtype": "string",
+      "source_db_column": "<constant>",
+      "tier": "lite"
+    },
+    {
+      "column": "fwd5",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "max_dd_5d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "rv_5d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "fwd10",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "max_dd_10d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "rv_10d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "fwd21",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "max_dd_21d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "rv_21d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "fwd63",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "max_dd_63d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "rv_63d",
+      "dtype": "float",
+      "source_db_column": "<derived>",
+      "tier": "lite"
+    },
+    {
+      "column": "csp_candidates_json",
+      "dtype": "json_string",
+      "source_db_column": "csp_candidates_json",
+      "tier": "full+archive"
+    },
+    {
+      "column": "csp_suggestion_json",
+      "dtype": "json_string",
+      "source_db_column": "csp_suggestion_json",
+      "tier": "full+archive"
+    },
+    {
+      "column": "leap_suggestion_json",
+      "dtype": "json_string",
+      "source_db_column": "leap_suggestion_json",
+      "tier": "full+archive"
+    },
+    {
+      "column": "pmcc_suggestion_json",
+      "dtype": "json_string",
+      "source_db_column": "pmcc_suggestion_json",
+      "tier": "full+archive"
+    },
+    {
+      "column": "stochastic_output_json",
+      "dtype": "json_string",
+      "source_db_column": "stochastic_output_json",
+      "tier": "full+archive"
+    },
+    {
+      "column": "option_chain_snapshot_json",
+      "dtype": "json_string",
+      "source_db_column": "option_chain_snapshot_json",
+      "tier": "full+archive"
+    }
+  ],
+  "validation_targets": {
+    "anchor_run": {
+      "date": "2026-05-01",
+      "session": "PM",
+      "expected": {
+        "spot": 16.27,
+        "gamma_flip": 14.5393,
+        "gex_percentile": 96.19,
+        "current_iv": 40.0,
+        "iv_regime": "CHEAP_VOL",
+        "btc_mvrv": 1.4246,
+        "btc_cycle_zone": "RECOVERY",
+        "asst_drawdown_90d": -0.3842,
+        "action_banner": "BUILD: LEAP ONLY",
+        "gamma_regime": "long_gamma_weak"
+      }
+    }
+  },
+  "validation_passed": true,
+  "validation_failures": [],
+  "archive_parse_health": {
+    "csp_candidates_json": {
+      "ok": 123,
+      "null": 0,
+      "error": 0
+    },
+    "csp_suggestion_json": {
+      "ok": 56,
+      "null": 67,
+      "error": 0
+    },
+    "leap_suggestion_json": {
+      "ok": 56,
+      "null": 67,
+      "error": 0
+    },
+    "pmcc_suggestion_json": {
+      "ok": 56,
+      "null": 67,
+      "error": 0
+    },
+    "stochastic_output_json": {
+      "ok": 123,
+      "null": 0,
+      "error": 0
+    },
+    "option_chain_snapshot_json": {
+      "ok": 18,
+      "null": 105,
+      "error": 0
+    }
+  }
+}
