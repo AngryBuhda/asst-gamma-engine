@@ -1,11 +1,11 @@
 {
   "schema_version": "meta-1",
-  "build_utc": "2026-05-12T22:50:25.228524Z",
+  "build_utc": "2026-05-13T16:08:23.445206Z",
   "latest_run": {
-    "snapshot_id": "2026-05-11_PM",
-    "runtime_utc": "2026-05-11T19:32:14.166593+00:00"
+    "snapshot_id": "2026-05-13_MID",
+    "runtime_utc": "2026-05-13T16:05:56.710370+00:00"
   },
-  "daily_runs_count": 123,
-  "data_db_sha256": "3a14b5890066387cf899442a7658a707843e8d49f12b163abe673a9c5c34d1f1",
+  "daily_runs_count": 128,
+  "data_db_sha256": "4da1734f37f586719e3a8097892781e670a16b55c751f338babcca3112308793",
   "freshness_threshold_hours": 26
 }
