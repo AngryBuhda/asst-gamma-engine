@@ -1,6 +1,6 @@
 {
   "schema_version": "1.5",
-  "generated_at_utc": "2026-05-15T22:31:57.665389+00:00",
+  "generated_at_utc": "2026-05-18T22:30:21.296332+00:00",
   "source_db": "/home/user/workspace/asst-gamma-dashboard/data.db",
   "source_db_mtime_utc": "2026-05-15T14:12:39.563985+00:00",
   "tiers": {
@@ -11,8 +11,8 @@
         "asst_research_master_v1.5.parquet"
       ],
       "columns": 110,
-      "rows": 135,
-      "rows_pm": 71
+      "rows": 138,
+      "rows_pm": 72
     },
     "full": {
       "purpose": "Lite + JSON blobs as escaped strings. Every DB column flat.",
@@ -21,63 +21,63 @@
         "asst_research_master_v1.5_full.parquet"
       ],
       "columns": 116,
-      "rows": 135
+      "rows": 138
     },
     "archive": {
       "purpose": "Nested JSON-per-row. JSON columns parsed. Audit-grade.",
       "files": [
         "asst_runs_archive_v1.5.jsonl"
       ],
-      "rows": 135
+      "rows": 138
     }
   },
   "files": {
     "lite_csv": {
       "filename": "asst_research_master_v1.5.csv",
-      "size_bytes": 265092,
-      "mtime_utc": "2026-05-15T22:31:57.308022+00:00"
+      "size_bytes": 271520,
+      "mtime_utc": "2026-05-18T22:30:20.809735+00:00"
     },
     "lite_parquet": {
       "filename": "asst_research_master_v1.5.parquet",
-      "size_bytes": 134471,
-      "mtime_utc": "2026-05-15T22:31:57.344023+00:00"
+      "size_bytes": 136213,
+      "mtime_utc": "2026-05-18T22:30:20.841736+00:00"
     },
     "full_csv": {
       "filename": "asst_research_master_v1.5_full.csv",
-      "size_bytes": 4422202,
-      "mtime_utc": "2026-05-15T22:31:57.452024+00:00"
+      "size_bytes": 4843061,
+      "mtime_utc": "2026-05-18T22:30:20.941736+00:00"
     },
     "full_parquet": {
       "filename": "asst_research_master_v1.5_full.parquet",
-      "size_bytes": 909590,
-      "mtime_utc": "2026-05-15T22:31:57.488025+00:00"
+      "size_bytes": 992335,
+      "mtime_utc": "2026-05-18T22:30:20.997737+00:00"
     },
     "archive_jsonl": {
       "filename": "asst_runs_archive_v1.5.jsonl",
-      "size_bytes": 4189803,
-      "mtime_utc": "2026-05-15T22:31:57.640027+00:00"
+      "size_bytes": 4563803,
+      "mtime_utc": "2026-05-18T22:30:21.265739+00:00"
     },
     "readme": {
       "filename": "asst_research_master_v1.5_README.md",
       "size_bytes": 6594,
-      "mtime_utc": "2026-05-14T22:31:49.429195+00:00"
+      "mtime_utc": "2026-05-15T22:31:57.684027+00:00"
     },
     "meta": {
       "filename": "asst_research_master_v1.5_meta.json",
-      "size_bytes": 22278,
-      "mtime_utc": "2026-05-14T22:31:49.413195+00:00"
+      "size_bytes": 22538,
+      "mtime_utc": "2026-05-15T22:31:57.664027+00:00"
     }
   },
-  "row_count_total": 135,
-  "row_count_pm": 71,
+  "row_count_total": 138,
+  "row_count_pm": 72,
   "date_range": {
     "min": "2026-02-04",
-    "max": "2026-05-15"
+    "max": "2026-05-18"
   },
   "session_counts": {
-    "PM": 71,
-    "AM": 32,
-    "MID": 32
+    "PM": 72,
+    "AM": 33,
+    "MID": 33
   },
   "forward_horizons_trading_days": [
     5,
@@ -86,10 +86,10 @@
     63
   ],
   "forward_return_coverage_pm": {
-    "fwd5_populated": 66,
-    "fwd10_populated": 61,
-    "fwd21_populated": 50,
-    "fwd63_populated": 8
+    "fwd5_populated": 67,
+    "fwd10_populated": 62,
+    "fwd21_populated": 51,
+    "fwd63_populated": 9
   },
   "cohorts": [
     {
@@ -98,7 +98,7 @@
       "n_with_fwd5": 18,
       "n_with_fwd10": 18,
       "n_with_fwd21": 18,
-      "n_with_fwd63": 1,
+      "n_with_fwd63": 2,
       "earliest_date": "2026-02-04",
       "latest_date": "2026-04-02"
     },
@@ -137,7 +137,7 @@
       "n_total_pm": 5,
       "n_with_fwd5": 5,
       "n_with_fwd10": 4,
-      "n_with_fwd21": 1,
+      "n_with_fwd21": 2,
       "n_with_fwd63": 0,
       "earliest_date": "2026-04-11",
       "latest_date": "2026-05-08"
@@ -146,7 +146,7 @@
       "cohort_id": "RECOVERY|RICH_VOL|LONG",
       "n_total_pm": 4,
       "n_with_fwd5": 3,
-      "n_with_fwd10": 1,
+      "n_with_fwd10": 2,
       "n_with_fwd21": 0,
       "n_with_fwd63": 0,
       "earliest_date": "2026-04-30",
@@ -171,6 +171,16 @@
       "n_with_fwd63": 0,
       "earliest_date": "2026-04-10",
       "latest_date": "2026-04-14"
+    },
+    {
+      "cohort_id": "EXPANSION|RICH_VOL|LONG",
+      "n_total_pm": 2,
+      "n_with_fwd5": 1,
+      "n_with_fwd10": 0,
+      "n_with_fwd21": 0,
+      "n_with_fwd63": 0,
+      "earliest_date": "2026-05-06",
+      "latest_date": "2026-05-18"
     },
     {
       "cohort_id": "RECOVERY|EXTREME_CHEAP|NEUTRAL",
@@ -203,19 +213,9 @@
       "latest_date": "2026-05-15"
     },
     {
-      "cohort_id": "EXPANSION|RICH_VOL|LONG",
-      "n_total_pm": 1,
-      "n_with_fwd5": 1,
-      "n_with_fwd10": 0,
-      "n_with_fwd21": 0,
-      "n_with_fwd63": 0,
-      "earliest_date": "2026-05-06",
-      "latest_date": "2026-05-06"
-    },
-    {
       "cohort_id": "EXPANSION|RICH_VOL|NEUTRAL",
       "n_total_pm": 1,
-      "n_with_fwd5": 0,
+      "n_with_fwd5": 1,
       "n_with_fwd10": 0,
       "n_with_fwd21": 0,
       "n_with_fwd63": 0,
@@ -943,32 +943,32 @@
   "validation_failures": [],
   "archive_parse_health": {
     "csp_candidates_json": {
-      "ok": 135,
+      "ok": 138,
       "null": 0,
       "error": 0
     },
     "csp_suggestion_json": {
-      "ok": 68,
+      "ok": 71,
       "null": 67,
       "error": 0
     },
     "leap_suggestion_json": {
-      "ok": 68,
+      "ok": 71,
       "null": 67,
       "error": 0
     },
     "pmcc_suggestion_json": {
-      "ok": 68,
+      "ok": 71,
       "null": 67,
       "error": 0
     },
     "stochastic_output_json": {
-      "ok": 135,
+      "ok": 138,
       "null": 0,
       "error": 0
     },
     "option_chain_snapshot_json": {
-      "ok": 28,
+      "ok": 31,
       "null": 107,
       "error": 0
     }
